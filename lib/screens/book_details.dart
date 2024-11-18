@@ -1,7 +1,8 @@
-import 'package:bookly/constant.dart';
-import 'package:bookly/utils/assets.dart';
+
 import 'package:bookly/widgets/rating_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../core/utils/assets.dart';
 
 class BookDetailsScreen extends StatelessWidget {
   const BookDetailsScreen({super.key});
@@ -9,11 +10,9 @@ class BookDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kPrimaryColor,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
