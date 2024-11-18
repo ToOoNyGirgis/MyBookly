@@ -13,6 +13,7 @@ class BookDetailsScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -82,11 +83,11 @@ class BookDetailsScreen extends StatelessWidget {
 
               ],
             ),
-            SizedBox(height: 20,),
-            Spacer(),
-            Row(
+            const SizedBox(height: 20,),
+            const Spacer(),
+            const Row(
               children: [
-                const Text('You can also like',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
+                Text('You can also like',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
               ],
             ),
 
@@ -98,7 +99,7 @@ class BookDetailsScreen extends StatelessWidget {
                   itemCount: 5,
                   itemBuilder: (context, index) => GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => BookDetailsScreen(),));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const BookDetailsScreen(),));
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(16),
