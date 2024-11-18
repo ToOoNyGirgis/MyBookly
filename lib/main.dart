@@ -13,8 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return  MaterialApp(
-      theme: ThemeData().copyWith(
-        scaffoldBackgroundColor: kPrimaryColor
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: kPrimaryColor,
+
       ),
       debugShowCheckedModeBanner: false,
       home: SplashView(),
