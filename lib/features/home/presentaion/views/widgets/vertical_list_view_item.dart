@@ -18,13 +18,12 @@ class VerticalListViewItem extends StatelessWidget {
   final int index;
   @override
   Widget build(BuildContext context) {
-    print(vBookModel.toString());
     return SizedBox(
       height: MediaQuery.of(context).size.height * .2,
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const BookDetailsView(),
+            builder: (context) =>  BookDetailsView(id: vBookModel.items[index].id,),
           ));
         },
         child: Padding(

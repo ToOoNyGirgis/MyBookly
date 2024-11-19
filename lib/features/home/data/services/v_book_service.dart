@@ -21,7 +21,6 @@ class VBookService{
     const String baseUrl ='https://www.googleapis.com/books/v1/';
     final response = await dio.get('${baseUrl}volumes?q=programming');
     if (response.statusCode == 200) {
-      print(response.data.toString());
       return VBookModel.fromJson(response.data);
     } else {
       throw Exception('Failed to fetch books');
