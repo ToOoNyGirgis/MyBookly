@@ -2,8 +2,8 @@ import 'package:bookly/screens/book_details.dart';
 import 'package:bookly/widgets/rating_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../core/utils/assets.dart';
-import '../widgets/custom_app_bar.dart';
+import '../../../../core/utils/assets.dart';
+import '../../../../widgets/custom_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
