@@ -11,10 +11,15 @@ class BookCoverImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(18),
-      child: Image(
+      child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.35,
-        image: const AssetImage(
-          AppAssets.testImage,
+        child: const AspectRatio(
+          aspectRatio: 9/16,
+          child: Image(
+            image: AssetImage(
+              AppAssets.testImage,
+            ),
+          ),
         ),
       ),
     );
