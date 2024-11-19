@@ -1,24 +1,32 @@
+
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/home/data/model/v_book_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/assets.dart';
+import '../../../../../core/utils/constant.dart';
 import '../../../../book_details/presentation/views/book_details.dart';
 
 class VerticalListViewItem extends StatelessWidget {
   const VerticalListViewItem({
     super.key,
+    required this.vBookModel,
+    required this.index,
   });
 
+  final VBookModel vBookModel;
+  final int index;
   @override
   Widget build(BuildContext context) {
+    print(vBookModel.toString());
     return SizedBox(
       height: MediaQuery.of(context).size.height * .2,
       child: GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const BookDetailsView(),
-            ));
-          },
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const BookDetailsView(),
+          ));
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16),
           child: Row(
@@ -26,8 +34,11 @@ class VerticalListViewItem extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(16),
                 child: AspectRatio(
-                  aspectRatio: 9 / 16,
-                  child: Image.asset(AppAssets.testImage),
+                  aspectRatio: 12 / 16,
+                  child: CachedNetworkImage(
+                    imageUrl: vBookModel.items[index].volumeInfo.image,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               Expanded(
@@ -37,21 +48,21 @@ class VerticalListViewItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      const Text(
-                        'book name book name book name book name book name ',
-                        style: TextStyle(
+                       Text(
+                         vBookModel.items[index].volumeInfo.title! ,
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 22,
-                            fontWeight: FontWeight.bold),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: kGtSectraFine),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
                         textAlign: TextAlign.start,
-                        'book description book description book description book description ',
+                        vBookModel.items[index].volumeInfo.description!,
                         style: TextStyle(
-                            color: Colors.white.withOpacity(0.9),
-                            fontSize: 18),
+                            color: Colors.white.withOpacity(0.9), fontSize: 18),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -61,12 +72,16 @@ class VerticalListViewItem extends StatelessWidget {
                           children: [
                             Text(
                               '19.99 \$ ',
-                              style: Styles.titleMedium.copyWith(fontSize: 18,fontWeight: FontWeight.w900),
+                              style: Styles.titleMedium.copyWith(
+                                  fontSize: 18, fontWeight: FontWeight.w900),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
                             const Spacer(),
-                            const Icon(Icons.star,color: Colors.yellow,),
+                            const Icon(
+                              Icons.star,
+                              color: Colors.yellow,
+                            ),
                             Text(
                               '4.8 ',
                               style: Styles.titleMedium.copyWith(fontSize: 18),
@@ -75,7 +90,9 @@ class VerticalListViewItem extends StatelessWidget {
                             ),
                             Text(
                               '(2392)',
-                              style: TextStyle(color: Colors.white.withOpacity(0.9),fontSize: 18),
+                              style: TextStyle(
+                                  color: Colors.white.withOpacity(0.9),
+                                  fontSize: 18),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),

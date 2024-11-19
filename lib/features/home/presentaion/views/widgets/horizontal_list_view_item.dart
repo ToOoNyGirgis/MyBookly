@@ -1,12 +1,15 @@
+import 'package:bookly/features/book_details/presentation/views/book_details.dart';
+import 'package:bookly/temp/data/model/books_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/assets.dart';
-import '../../../../book_details/presentation/views/book_details.dart';
 
 class HorizontalListViewItem extends StatelessWidget {
   const HorizontalListViewItem({
-    super.key,
+    super.key, required this.bookModel,
   });
+
+  final BookItem bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,7 @@ class HorizontalListViewItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           child: AspectRatio(
             aspectRatio: 9 / 16,
-            child: Image.asset(AppAssets.testImage,fit: BoxFit.cover,),
+            child: CachedNetworkImage(imageUrl: bookModel.volumeInfo.image!,fit: BoxFit.cover,),
           ),
         ),
       ),
