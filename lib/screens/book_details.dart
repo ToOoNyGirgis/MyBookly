@@ -1,5 +1,5 @@
 
-import 'package:bookly/widgets/rating_widget.dart';
+import 'package:bookly/features/home/presentaion/views/widgets/rating_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../core/utils/assets.dart';

@@ -18,13 +18,10 @@ class _SplashViewBodyState extends State<SplashViewBody>
   @override
   void initState() {
     initSlidingAnimation();
-    Future.delayed(
-      const Duration(seconds: 2),
-      () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomeScreen(),)),
-
-    );
+    navigateToHome();
     super.initState();
   }
+
 
   @override
   void dispose() {
@@ -43,7 +40,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
           const SizedBox(
             height: 16,
           ),
-          SlidingText(slidingAnimation: slidingAnimation)
+          SlidingText(slidingAnimation: slidingAnimation),
         ],
       ),
     );
@@ -57,4 +54,13 @@ class _SplashViewBodyState extends State<SplashViewBody>
             .animate(animationController);
     animationController.forward();
   }
+
+  Future<dynamic> navigateToHome() {
+    return Future.delayed(
+      const Duration(seconds: 2),
+          () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomeScreen(),)),
+
+    );
+  }
+
 }
