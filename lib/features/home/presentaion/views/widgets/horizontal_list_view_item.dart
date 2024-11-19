@@ -15,7 +15,7 @@ class HorizontalListViewItem extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const BookDetailsScreen(),
+            builder: (context) => const BookDetailsView(),
           ));
         },
         child: ClipRRect(
