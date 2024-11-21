@@ -45,7 +45,7 @@ class Items {
 class VolumeInfo {
   final String? title;
   final String? description;
-  final String image;
+  final String? image;
   final int? pageCount;
 
   // final SaleInfo? saleInfo;
@@ -53,7 +53,7 @@ class VolumeInfo {
   VolumeInfo({
     required this.title,
     this.description,
-    required this.image,
+     this.image,
     this.pageCount,
     // this.saleInfo,
   });
@@ -62,7 +62,7 @@ class VolumeInfo {
     return VolumeInfo(
       title: json['title'],
       description: json['description'],
-      image: json['imageLinks']['thumbnail'],
+      image: json['imageLinks']?['thumbnail'],
       pageCount: json['pageCount'],
       // saleInfo: SaleInfo.fromJson(json['saleInfo']),
     );

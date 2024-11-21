@@ -8,3 +8,5 @@ final verticalProviderController = FutureProvider.family<VBookModel,String?>((re
   return service.getBooks(category);
 
 },);
+
+final verticalStateProvider = StateProvider<String>((ref) => 'Programming');

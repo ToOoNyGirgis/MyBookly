@@ -1,11 +1,12 @@
 
+import 'package:bookly/core/utils/assets.dart';
+import 'package:bookly/core/utils/constant.dart';
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/book_details/presentation/views/book_details.dart';
 import 'package:bookly/features/home/data/model/v_book_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/constant.dart';
-import '../../../../book_details/presentation/views/book_details.dart';
 
 class VerticalListViewItem extends StatelessWidget {
   const VerticalListViewItem({
@@ -35,7 +36,7 @@ class VerticalListViewItem extends StatelessWidget {
                 child: AspectRatio(
                   aspectRatio: 12 / 16,
                   child: CachedNetworkImage(
-                    imageUrl: vBookModel.items[index].volumeInfo.image,
+                    imageUrl: vBookModel.items[index].volumeInfo.image??AppAssets.testNetworkImage,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -59,7 +60,7 @@ class VerticalListViewItem extends StatelessWidget {
                       ),
                       Text(
                         textAlign: TextAlign.start,
-                        vBookModel.items[index].volumeInfo.description!,
+                        vBookModel.items[index].volumeInfo.description??'',
                         style: TextStyle(
                             color: Colors.white.withOpacity(0.9), fontSize: 18),
                         maxLines: 1,
