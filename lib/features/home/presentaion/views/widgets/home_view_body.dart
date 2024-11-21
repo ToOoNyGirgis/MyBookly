@@ -25,13 +25,14 @@ class HomeViewBody extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const CustomAppBar(),
+          const SizedBox(height: 16,),
           data2.when(
             data: (data) => HorizontalListView(data: data,),
             error: (error, stackTrace) {
               log(error.toString(), stackTrace: stackTrace);
-              return Center(child: Text('error'));
+              return const Center(child: Text('error'));
             },
-            loading: () => Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CircularProgressIndicator()),
           ),
           const SizedBox(
             height: 20,
@@ -46,9 +47,9 @@ class HomeViewBody extends ConsumerWidget {
             ),
             error: (error, stackTrace) {
               log(error.toString(), stackTrace: stackTrace);
-              return Center(child: Text('error'));
+              return const Center(child: Text('error'));
             },
-            loading: () => Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CircularProgressIndicator()),
           ),
         ],
       ),
