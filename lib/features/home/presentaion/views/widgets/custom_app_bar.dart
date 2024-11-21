@@ -1,3 +1,4 @@
+import 'package:bookly/features/home/presentaion/views/widgets/custom_search.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/assets.dart';
@@ -9,6 +10,7 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding: const EdgeInsets.only(left: 16,right:16,top: 40,bottom: 10),
       child: Row(
@@ -19,8 +21,8 @@ class CustomAppBar extends StatelessWidget {
           ),
           const Spacer(),
           IconButton(
-              onPressed: () {
-              },
+              onPressed: () => showSearch(context: context, delegate: CustomSearch())
+              ,
               icon: const Icon(
                 Icons.search,
                 color: Colors.white,
@@ -31,3 +33,4 @@ class CustomAppBar extends StatelessWidget {
     );
   }
 }
+

@@ -1,15 +1,16 @@
 import 'package:bookly/features/book_details/presentation/views/book_details.dart';
-import 'package:bookly/temp/data/model/books_model.dart';
+import 'package:bookly/features/home/data/model/v_book_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 
 class HorizontalListViewItem extends StatelessWidget {
   const HorizontalListViewItem({
-    super.key, required this.bookModel,
+    super.key, required this.bookModel, required this.index,
   });
 
-  final BookItem bookModel;
+  final VBookModel bookModel;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +19,14 @@ class HorizontalListViewItem extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => BookDetailsView(id: bookModel.id,),
+            builder: (context) => BookDetailsView(id: bookModel.items[index].id,),
           ));
         },
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: AspectRatio(
             aspectRatio: 9 / 16,
-            child: CachedNetworkImage(imageUrl: bookModel.volumeInfo.image!,fit: BoxFit.cover,),
+            child: CachedNetworkImage(imageUrl: bookModel.items[index].volumeInfo.image,fit: BoxFit.cover,),
           ),
         ),
       ),

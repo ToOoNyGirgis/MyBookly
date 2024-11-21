@@ -74,22 +74,17 @@ class ImageLinks {
 }
 
 class SaleInfo {
-  final String saleability;
-  final double amount;
+  final String? saleability;
+  final double? amount;
 
-  SaleInfo(
-      {
-        required this.saleability,
-        required this.amount,
-
-      }
-      );
+  SaleInfo({this.saleability, this.amount});
 
   factory SaleInfo.fromJson(Map<String, dynamic> json) {
     return SaleInfo(
       saleability: json['saleability'],
-      amount: json['listPrice']['amount'],
+      amount: (json['retailPrice']?['amount'] as num?)?.toDouble(),
     );
   }
 }
+
 

@@ -16,10 +16,10 @@ class VBookService{
 
   VBookService(this.dio);
 
-  Future<VBookModel> getBooks() async {
+  Future<VBookModel> getBooks(String? category) async {
 
     const String baseUrl ='https://www.googleapis.com/books/v1/';
-    final response = await dio.get('${baseUrl}volumes?q=programming');
+    final response = await dio.get('${baseUrl}volumes?q=${category??'programming'}');
     if (response.statusCode == 200) {
       return VBookModel.fromJson(response.data);
     } else {

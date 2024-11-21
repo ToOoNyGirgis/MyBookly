@@ -23,16 +23,21 @@ class VBookModel {
 class Items {
   final String id;
   final VolumeInfo volumeInfo;
+  final SaleInfo saleInfo;
 
   Items({
     required this.id,
     required this.volumeInfo,
+    required this.saleInfo,
   });
 
   factory Items.fromJson(Map<String, dynamic> json) {
     return Items(
       id: json['id'],
-      volumeInfo: VolumeInfo.fromJson(json['volumeInfo']),
+      volumeInfo: VolumeInfo.fromJson(
+        json['volumeInfo'],
+      ),
+      saleInfo: SaleInfo.fromJson(json['saleInfo']),
     );
   }
 }
@@ -42,6 +47,7 @@ class VolumeInfo {
   final String? description;
   final String image;
   final int? pageCount;
+
   // final SaleInfo? saleInfo;
 
   VolumeInfo({
@@ -49,7 +55,7 @@ class VolumeInfo {
     this.description,
     required this.image,
     this.pageCount,
-     // this.saleInfo,
+    // this.saleInfo,
   });
 
   factory VolumeInfo.fromJson(Map<String, dynamic> json) {
@@ -64,15 +70,15 @@ class VolumeInfo {
 }
 
 class SaleInfo {
-  final String saleability;
-  final int retailPrice;
+  final String? saleability;
+  final double? retailPrice;
 
-  SaleInfo({required this.saleability, required this.retailPrice});
+  SaleInfo({this.saleability, this.retailPrice});
 
   factory SaleInfo.fromJson(Map<String, dynamic> json) {
     return SaleInfo(
-      retailPrice: json['retailPrice']['amount'],
       saleability: json['saleability'],
+      retailPrice: (json['retailPrice']?['amount'] as num?)?.toDouble(),
     );
   }
 }

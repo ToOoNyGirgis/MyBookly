@@ -1,39 +1,57 @@
+import 'dart:developer';
+
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/home/presentaion/controler/v_book_controler.dart';
 import 'package:bookly/features/home/presentaion/views/widgets/vertical_list_view.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'custom_app_bar.dart';
 import 'horizontal_list_view.dart';
 
-class HomeViewBody extends StatelessWidget {
+class HomeViewBody extends ConsumerWidget {
   const HomeViewBody({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context, ref) {
+    final data1 = ref.watch(verticalProviderController('programming'));
+    final data2 = ref.watch(verticalProviderController('doctor'));
+    return Scaffold(
         body: Padding(
-      padding: EdgeInsetsDirectional.all(20),
+      padding: const EdgeInsetsDirectional.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomAppBar(),
-          HorizontalListView(),
-          SizedBox(
+          const CustomAppBar(),
+          data2.when(
+            data: (data) => HorizontalListView(data: data,),
+            error: (error, stackTrace) {
+              log(error.toString(), stackTrace: stackTrace);
+              return Center(child: Text('error'));
+            },
+            loading: () => Center(child: CircularProgressIndicator()),
+          ),
+          const SizedBox(
             height: 20,
           ),
-          Text(
+          const Text(
             'Best Sellers',
-            style:Styles.titleMedium,
+            style: Styles.titleMedium,
           ),
-          VerticalListView(),
+          data1.when(
+            data: (data) => VerticalListView(
+              data: data,
+            ),
+            error: (error, stackTrace) {
+              log(error.toString(), stackTrace: stackTrace);
+              return Center(child: Text('error'));
+            },
+            loading: () => Center(child: CircularProgressIndicator()),
+          ),
         ],
       ),
     ));
   }
 }
-
-
-
-
