@@ -10,3 +10,4 @@ final verticalProviderController = FutureProvider.family<VBookModel,String?>((re
 },);
 
 final verticalStateProvider = StateProvider<String>((ref) => 'Programming');
+final horizontalStateProvider = StateProvider<String>((ref) => 'doctor');
